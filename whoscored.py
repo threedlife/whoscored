@@ -67,7 +67,7 @@ def get_seasons(tournament_id, overwrite=False):
     # Sometimes the tournament doesn't have a name in the main menu - use the title on the page
     if tournament['name'] == '':
         tournament_name = content.xpath('//h1[@class="tournament-header"]/text()')[0].strip()
-        tournaments.update_one({'tournamentId': tournament['tournamentId']}, {'$se': {'name': tournament_name}})
+        tournaments.update_one({'tournamentId': tournament['tournamentId']}, {'$set': {'name': tournament_name}})
 
     # Some tournaments don't show up in the main menu - take a fuller list from the dropdown menu
     tournament_links = content.xpath('//select[@id="tournaments"]/option/@value')
